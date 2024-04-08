@@ -4,6 +4,7 @@ import TWEEN from '@tweenjs/tween.js'
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js'
+import { FontLoader, TextGeometry } from 'three/examples/jsm/Addons.js'
 import { ColorConverter } from 'three/examples/jsm/math/ColorConverter'
 
 function SingleCube({ position, geometry, onClick }) {
@@ -112,13 +113,13 @@ function Cube({setStep}) {
 
     return (
         <>
-            {showSingleCube ? (
+            {/* {showSingleCube ? (
                 <SingleCube
                     position={singleCubePosition}
                     geometry={new RoundedBoxGeometry(2, 2, 2, 1, 0.05)}
                     onClick={() => handleCubeletClick(singleCubePosition)}
                 />
-            ) : (
+            ) : ( */}
                 <group ref={ref}>
                     {[...Array(3).keys()].map((x) =>
                         [...Array(3).keys()].map((y) =>
@@ -133,12 +134,13 @@ function Cube({setStep}) {
                         )
                     )}
                 </group>
-            )}
+            {/* )} */}
         </>
     )
 }
 
 function Cubelet({ position, geometry, onClick }) {
+
 
     return (
         
@@ -146,18 +148,46 @@ function Cubelet({ position, geometry, onClick }) {
             {[...Array(6).keys()].map((i) => (
                 <meshStandardMaterial key={i} attach={`material-${i}`} />
             ))}
-            <Html occlude distanceFactor={3.5} position={[0, 0, 0.51]} transform>
+            {/* <Html occlude distanceFactor={3.5} position={[0, 0, 0.51]} transform>
         <span>xc1</span>
-        {/* <Slider
-          style={{ width: 100 }}
-          min={0.5}
-          max={1}
-          step={0.01}
-          value={size}
-          onChange={(value) => ((controls.enabled = false), set(value))}
-          onAfterChange={() => (controls.enabled = true)}
-        /> */}
-      </Html>
+      </Html> */}
+       {/* <Text
+        position={[-1, 0.5, 0.5]} // Adjust for each face
+        fontSize={0.1}
+        anchorX="center"
+        anchorY="middle"
+        color={"black"}
+        // material={{ color: 'black' }} // Adjust material properties
+      >
+        Bangladesh
+      </Text> */}
+       {/* <Text
+        position={[0.5, 0.5, 0.1]} // Adjust for each face
+        fontSize={0.1}
+        anchorX="center"
+        anchorY="middle"
+        color={"black"}
+        // material={{ color: 'black' }} // Adjust material properties
+      >
+        Bangladesh
+      </Text> */}
+      {/* <boxGeometry args={[1, 1, 1]} />
+      */}
+
+                {/* <meshStandardMaterial color="white" />
+      <CubeLabel text="Front" position={[0, 0, 0.51]} rotation={[0, 0, 0]} />
+      <CubeLabel text="Back" position={[0, 0, -0.51]} rotation={[0, Math.PI, 0]} />
+      <CubeLabel text="Top" position={[0, 0.51, 0]} rotation={[Math.PI / 2, 0, 0]} />
+      <CubeLabel text="Bottom" position={[0, -0.51, 0]} rotation={[-Math.PI / 2, 0, 0]} />
+      <CubeLabel text="Left" position={[-0.51, 0, 0]} rotation={[0, -Math.PI / 2, 0]} />
+      <CubeLabel text="Right" position={[0.51, 0, 0]} rotation={[0, Math.PI / 2, 0]} />  */}
+        {/* <meshStandardMaterial color="white" />
+      <CubeLabel text="Front" position={[-3, 0, 0.51]} rotation={[0, 0, 0]} /> */}
+      {/* <CubeLabel text="Back" position={[0, 0, -0.51]} rotation={[0, Math.PI, 0]} />
+      <CubeLabel text="Top" position={[0, 0.51, 0]} rotation={[Math.PI / 2, 0, 0]} />
+      <CubeLabel text="Bottom" position={[0, -0.51, 0]} rotation={[-Math.PI / 2, 0, 0]} />
+      <CubeLabel text="Left" position={[-0.51, 0, 0]} rotation={[0, -Math.PI / 2, 0]} />
+      <CubeLabel text="Right" position={[0.51, 0, 0]} rotation={[0, Math.PI / 2, 0]} />  */}
         </mesh>
     )
 }
@@ -174,16 +204,53 @@ function RubikCube({setStep}) {
                 <color attach="background" args={['#818589']} />
                 {/* <color attach="background" args={['#ffffff']} /> */}
                 <Suspense>
-                    <Environment preset="forest" />
+                    <Environment preset="sunset" />
                 </Suspense>
                 <Cube setStep={setStep} />
                 <OrbitControls target={[0, 0, 0]} />
                 {/* <ContactShadows frames={1} position={[0, -0.5, 0]}  color="orange" /> */}
                 <Stats />
                 <Box />
+                <meshStandardMaterial color="white" />
+                <>
+                {/* left */}
+                    <CubeLabel anchorX={'right'} text="Solutions" position={[-1.8, 1, 1.5]} rotation={[0, 0, 0]} />
+                    <CubeLabel anchorX={'right'} text="Transition" position={[-1.8, 0, 1.5]} rotation={[0, 0, 0]} />
+                    <CubeLabel anchorX={'right'} text="Risk reduction" position={[-1.8, -1, 1.5]} rotation={[0, 0, 0]} />
+                </>
+                <>
+                {/* bottom */}
+                    <CubeLabel anchorX={'center'} text="Climate mitigation" position={[1, -1.7, 1.5]} rotation={[0, 0, 0]} />
+                    <CubeLabel anchorX={'center'} text="Climate adaptation" position={[0, -1.7, 1.5]} rotation={[0, 0, 0]} />
+                    <CubeLabel anchorX={'center'} text="Biodiversity" position={[-1, -1.7, 1.5]} rotation={[0, 0, 0]} />
+                </>
+                <>
+                {/* right */}
+                    <CubeLabel anchorX={'center'} text="Spend" position={[2, -1.7, -1]} rotation={[0, 0, -0.31]} />
+                    <CubeLabel anchorX={'center'} text="Lend" position={[2, -1.7, 0]} rotation={[0, 0, -0.31]} />
+                    <CubeLabel anchorX={'center'} text="Invest" position={[2, -1.7, 1]} rotation={[0, 0, -0.31]} />
+                </>
             </Canvas>
         </>
     )
 }
 
-export default RubikCube
+export default RubikCube;
+
+
+const CubeLabel = ({ text, position, rotation, anchorX }) => {
+    return (
+      <Text
+        position={position}
+        rotation={rotation}
+        fontSize={0.12}
+        color="black"
+        anchorX={anchorX}
+        anchorY="middle"
+        remove={true}
+      >
+        {text}
+      </Text>
+    )
+  }
+
