@@ -1,12 +1,10 @@
-import { ContactShadows, Dodecahedron, Environment, OrbitControls, PerspectiveCamera, RenderTexture, Stats, Text } from '@react-three/drei'
-import { Canvas, useFrame, useLoader } from '@react-three/fiber'
+import { Box, Environment, Html, OrbitControls, RenderTexture, Stats, Text } from '@react-three/drei'
+import { Canvas, useFrame } from '@react-three/fiber'
 import TWEEN from '@tweenjs/tween.js'
 import { Suspense, useEffect, useMemo, useRef, useState } from 'react'
-import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js'
 import * as THREE from 'three'
-import { TextureLoader } from 'three/src/loaders/TextureLoader';
-import Renderer from 'three/examples/jsm/renderers/common/Renderer'
-import { ColorConverter } from 'three/examples/jsm/math/ColorConverter';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js'
+import { ColorConverter } from 'three/examples/jsm/math/ColorConverter'
 
 function SingleCube({ position, geometry, onClick }) {
     const textCanvas = document.createElement('canvas');
@@ -92,7 +90,7 @@ function Cube({setStep}) {
             // setShowSingleCube(!showSingleCube);
             setSingleCubePosition(position);
 
-            setStep('secondtLayer');
+            setStep('secondtLayer')
         } else {
             const timer = setTimeout(() => {
                 setDbClickTimer(null);
@@ -143,10 +141,23 @@ function Cube({setStep}) {
 function Cubelet({ position, geometry, onClick }) {
 
     return (
-        <mesh position={position} geometry={geometry} onClick={onClick}>
+        
+        <mesh position={position} geometry={geometry} onClick={onClick} scale={[1, 1, 1]}>
             {[...Array(6).keys()].map((i) => (
                 <meshStandardMaterial key={i} attach={`material-${i}`} />
             ))}
+            <Html occlude distanceFactor={3.5} position={[0, 0, 0.51]} transform>
+        <span>xc1</span>
+        {/* <Slider
+          style={{ width: 100 }}
+          min={0.5}
+          max={1}
+          step={0.01}
+          value={size}
+          onChange={(value) => ((controls.enabled = false), set(value))}
+          onAfterChange={() => (controls.enabled = true)}
+        /> */}
+      </Html>
         </mesh>
     )
 }
@@ -155,7 +166,10 @@ function RubikCube({setStep}) {
     return (
         <>
             {/* <img style={{width:"500px", height:"500px"}} src="/public/assets/cam.jpg" alt="" /> */}
-            <Canvas style={{ width: '100vw', height: '100vh' }} camera={{ position: [3, 3, 3] }}>
+            {/* <Canvas style={{ width: '100vw', height: '100vh' }} camera={{ position: [3, 3, 3] }}> */}
+            {/* <Canvas style={{ width: '100vw', height: '100vh' }} orthographic camera={{ position: [-2, 3, 4], left: -2, right: 2, top: 2, bottom: -2 }}> */}
+            {/* <Canvas style={{ width: '100vw', height: '100vh' }} orthographic camera={{ position: [-3, 2, 5], left: -2, right: 2, top: 2, bottom: -2, zoom: 100 }}> */}
+            <Canvas style={{ width: '100vw', height: '100vh' }} orthographic camera={{ position: [-3, 2, 5], left: -2, right: 2, top: 2, bottom: -2, zoom: 100 }}>
                 <ambientLight intensity={0.5} />
                 <color attach="background" args={['#818589']} />
                 {/* <color attach="background" args={['#ffffff']} /> */}
@@ -166,6 +180,7 @@ function RubikCube({setStep}) {
                 <OrbitControls target={[0, 0, 0]} />
                 {/* <ContactShadows frames={1} position={[0, -0.5, 0]}  color="orange" /> */}
                 <Stats />
+                <Box />
             </Canvas>
         </>
     )
