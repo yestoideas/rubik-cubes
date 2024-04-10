@@ -192,14 +192,76 @@ function Cubelet({ position, geometry, onClick }) {
     )
 }
 
+
+
+const cubeData = [
+    {
+      text: 'Solutions',
+      anchorX: 'right',
+      position: [-1.8, 1, 1.5],
+      rotation: [0, 0, 0],
+    },
+    {
+      text: 'Transition',
+      anchorX: 'right',
+      position: [-1.8, 0, 1.5],
+      rotation: [0, 0, 0],
+    },
+    {
+      text: 'texts',
+      anchorX: 'right',
+      position: [-1.8, -1, 1.5],
+      rotation: [0, 0, 0],
+    },
+    {
+      text: 'Climate\nmitigation',
+      anchorX: 'center',
+      position: [1, -1.7, 1.5],
+      rotation: [0, 0, 0],
+    },
+    {
+      text: 'Climate\nadaptation',
+      anchorX: 'center',
+      position: [0, -1.7, 1.5],
+      rotation: [0, 0, 0],
+    },
+    {
+      text: 'Biodiversity',
+      anchorX: 'center',
+      position: [-1, -1.7, 1.5],
+      rotation: [0, 0, 0],
+    },
+    {
+      text: 'Spend',
+      anchorX: 'center',
+      position: [2, -1.7, -1],
+      rotation: [0, 0, -0.31],
+    },
+    {
+      text: 'Lend',
+      anchorX: 'center',
+      position: [2, -1.7, 0],
+      rotation: [0, 0, -0.31],
+    },
+    {
+      text: 'Invest',
+      anchorX: 'center',
+      position: [2, -1.7, 1],
+      rotation: [0, 0, -0.31],
+    },
+  ];
+  
+
 function RubikCube({setStep}) {
+    const texts = 'Risk\nreduction';
     return (
         <>
             {/* <img style={{width:"500px", height:"500px"}} src="/public/assets/cam.jpg" alt="" /> */}
             {/* <Canvas style={{ width: '100vw', height: '100vh' }} camera={{ position: [3, 3, 3] }}> */}
             {/* <Canvas style={{ width: '100vw', height: '100vh' }} orthographic camera={{ position: [-2, 3, 4], left: -2, right: 2, top: 2, bottom: -2 }}> */}
             {/* <Canvas style={{ width: '100vw', height: '100vh' }} orthographic camera={{ position: [-3, 2, 5], left: -2, right: 2, top: 2, bottom: -2, zoom: 100 }}> */}
-            <Canvas style={{ width: '100vw', height: '100vh' }} orthographic camera={{ position: [-3, 2, 5], left: -2, right: 2, top: 2, bottom: -2, zoom: 100 }}>
+            {/* <Canvas style={{ width: '100vw', height: '100vh' }} orthographic camera={{ position: [-3, 2, 5], left: -2, right: 2, top: 2, bottom: -2, zoom: 100 }}> */}
+            <Canvas style={{ width: '100vw', height: '100vh' }} orthographic camera={{ position: [2.5, 2, 5], left: -2, right: 2, top: 2, bottom: -2, zoom: 100 }}>
                 <ambientLight intensity={0.5} />
                 <color attach="background" args={['#818589']} />
                 {/* <color attach="background" args={['#ffffff']} /> */}
@@ -214,29 +276,40 @@ function RubikCube({setStep}) {
                 <meshStandardMaterial color="white" />
                 <>
                 {/* left */}
-                    <CubeLabel anchorX={'right'} text="Solutions" position={[-1.8, 1, 1.5]} rotation={[0, 0, 0]} />
-                    <CubeLabel anchorX={'right'} text="Transition" position={[-1.8, 0, 1.5]} rotation={[0, 0, 0]} />
-                    <CubeLabel anchorX={'right'} text="Risk reduction" position={[-1.8, -1, 1.5]} rotation={[0, 0, 0]} />
                 </>
                 <>
                 {/* bottom */}
-                    <CubeLabel anchorX={'center'} text="Climate mitigation" position={[1, -1.7, 1.5]} rotation={[0, 0, 0]} />
-                    <CubeLabel anchorX={'center'} text="Climate adaptation" position={[0, -1.7, 1.5]} rotation={[0, 0, 0]} />
-                    <CubeLabel anchorX={'center'} text="Biodiversity" position={[-1, -1.7, 1.5]} rotation={[0, 0, 0]} />
                 </>
                 <>
                 {/* right */}
+                    {/* <CubeLabel anchorX={'right'} text="Solutions" position={[-1.8, 1, 1.5]} rotation={[0, 0, 0]} />
+                    <CubeLabel anchorX={'right'} text="Transition" position={[-1.8, 0, 1.5]} rotation={[0, 0, 0]} />
+                    <CubeLabel anchorX={'right'} text={texts} position={[-1.8, -1, 1.5]} rotation={[0, 0, 0]} />
+                    <CubeLabel anchorX={'center'} text="Climate mitigation" position={[1, -1.7, 1.5]} rotation={[0, 0, 0]} />
+                    <CubeLabel anchorX={'center'} text="Climate adaptation" position={[0, -1.7, 1.5]} rotation={[0, 0, 0]} />
+                    <CubeLabel anchorX={'center'} text="Biodiversity" position={[-1, -1.7, 1.5]} rotation={[0, 0, 0]} />
                     <CubeLabel anchorX={'center'} text="Spend" position={[2, -1.7, -1]} rotation={[0, 0, -0.31]} />
                     <CubeLabel anchorX={'center'} text="Lend" position={[2, -1.7, 0]} rotation={[0, 0, -0.31]} />
                     <CubeLabel anchorX={'center'} text="Invest" position={[2, -1.7, 1]} rotation={[0, 0, -0.31]} />
+
+                     */}
+
                 </>
+                {cubeData.map((cube, index) => (
+        <CubeLabel
+          key={index}
+          anchorX={cube.anchorX}
+          text={cube.text}
+          position={cube.position}
+          rotation={cube.rotation}
+        />
+      ))}
             </Canvas>
         </>
     )
 }
 
 export default RubikCube;
-
 
 const CubeLabel = ({ text, position, rotation, anchorX }) => {
     return (
@@ -248,6 +321,7 @@ const CubeLabel = ({ text, position, rotation, anchorX }) => {
         anchorX={anchorX}
         anchorY="middle"
         remove={true}
+       whiteSpace='pre-wrap' 
       >
         {text}
       </Text>

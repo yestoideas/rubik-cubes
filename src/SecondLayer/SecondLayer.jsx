@@ -1,7 +1,7 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Box, Container, Grid, IconButton, Stack, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { useEffect, useRef, useState } from 'react';
+import { createRef, useEffect, useRef, useState } from 'react';
 import { red, teal } from '@mui/material/colors';
 import { cubeBgColors } from '../utils/cubeColors';
 
@@ -12,12 +12,13 @@ const useStyles = makeStyles({
         alignItems: 'center',
         justifyContent: 'center',
         height: '100%',
-        width: '100%',
     },
     board: {
         // width: '336px',
-        padding: '4px',
-        backgroundColor: "white",
+        // padding: '4px',
+        // backgroundColor: "white",
+        maxWidth: '768px', 
+        width: '100%',
     },
     box: {
         cursor: 'pointer',
@@ -116,11 +117,12 @@ const SecondLayer = ({ setStep, setActiveValues }) => {
 
     const boxRefs = useRef([]);
 
-    // useEffect(() => {
-    //   const widths = boxRefs.current.map((ref) => ref.current.getBoundingClientRect().width);
-    //   const maxBoxWidth = Math.max(...widths);
+    useEffect(() => {
+      const widths = boxRefs.current.map((ref) => ref.current.getBoundingClientRect().width);
+      const maxBoxWidth = Math.max(...widths);
+      console.log(maxBoxWidth)
     //   setMaxWidth(maxBoxWidth);
-    // }, []);
+    }, []);
 
     return (
         <Container className={classes.container}>
@@ -128,9 +130,12 @@ const SecondLayer = ({ setStep, setActiveValues }) => {
                 <IconButton onClick={getBackHandler} sx={{ bgcolor: 'gray !important', color: '#ffffff' }}><ArrowBackIcon /> </IconButton>
                 <Box className={classes.board} mt={3}>
                     <Grid container spacing={2}>
-                        {cubeObj.map((item, index) => (
+                        {cubeObj.map((item, index) => {
+                            boxRefs.current[index] = boxRefs.current[index] || createRef();
+                            return (
                             <Grid key={index} item xs={3}>
                                 <Stack
+                                    ref={boxRefs.current[index]}
                                     onClick={() => handleClick(item)}
                                     className={classes.box}
                                     sx={{
@@ -147,7 +152,7 @@ const SecondLayer = ({ setStep, setActiveValues }) => {
                                     <Typography variant='body2'>{item.title}</Typography>
                                 </Stack>
                             </Grid>
-                        ))}
+                        )})}
                     </Grid>
                 </Box>
             </Box>
