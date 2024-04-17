@@ -221,58 +221,58 @@ const cubeData = [
     {
         text: 'XC1',
         anchorX: 'center',
-        position: [-1, 1, 1.5],
+        position: [-1, 1, 1.53],
         rotation: [0, 0, 0],
     },
     {
         text: 'XB1',
         anchorX: 'center',
-        position: [-1, 0, 1.5],
+        position: [-1, 0, 1.53],
         rotation: [0, 0, 0],
     },
     {
         text: 'XA1',
         anchorX: 'center',
-        position: [-1, -1, 1.5],
+        position: [-1, -1, 1.53],
         rotation: [0, 0, 0],
     },
 
     {
         text: 'YC1',
         anchorX: 'center',
-        position: [0, 1, 1.5],
+        position: [0, 1, 1.53],
         rotation: [0, 0, 0],
     },
     {
         text: 'YB1',
         anchorX: 'center',
-        position: [0, 0, 1.5],
+        position: [0, 0, 1.53],
         rotation: [0, 0, 0],
     },
     {
         text: 'YA1',
         anchorX: 'center',
-        position: [0, -1, 1.5],
+        position: [0, -1, 1.53],
         rotation: [0, 0, 0],
     },
 
     {
         text: 'ZC1',
         anchorX: 'center',
-        position: [1, 1, 1.5],
+        position: [1, 1, 1.53],
         rotation: [0, 0, 0],
     },
     {
         text: 'ZB1',
         anchorX: 'center',
-        position: [1, 0, 1.5],
+        position: [1, 0, 1.53],
         rotation: [0, 0, 0],
     },
 
     {
         text: 'ZA1',
         anchorX: 'center',
-        position: [1, -1, 1.5],
+        position: [1, -1, 1.53],
         rotation: [0, 0, 0],
     },
 
@@ -348,7 +348,7 @@ function RubikCube({ setStep }) {
             {/* <Canvas style={{ width: '100vw', height: '100vh' }} orthographic camera={{ position: [-2, 3, 4], left: -2, right: 2, top: 2, bottom: -2 }}> */}
             {/* <Canvas style={{ width: '100vw', height: '100vh' }} orthographic camera={{ position: [-3, 2, 5], left: -2, right: 2, top: 2, bottom: -2, zoom: 100 }}> */}
             {/* <Canvas style={{ width: '100vw', height: '100vh' }} orthographic camera={{ position: [-3, 2, 5], left: -2, right: 2, top: 2, bottom: -2, zoom: 100 }}> */}
-            <Canvas style={{ width: '100vw', height: '100vh' }} orthographic camera={{ position: [2.5, 2, 5], left: -2, right: 2, top: 2, bottom: -2, zoom: 100 }}>
+            <Canvas style={{ width: '100vw', height: '100vh', transition:'all 2s ease-in-out' }} orthographic camera={{ position: [2.5, 2, 5], left: -2, right: 2, top: 2, bottom: -2, zoom: 100 }}>
                 <ambientLight intensity={0.5} />
                 <color attach="background" args={['#818589']} />
                 {/* <color attach="background" args={['#ffffff']} /> */}
@@ -403,7 +403,8 @@ const CubeLabel = ({ text, position, rotation, anchorX }) => {
         <Text
             position={position}
             rotation={rotation}
-            fontSize={0.12}
+            fontSize={0.13}
+            fontWeight={800}
             color="black"
             anchorX={anchorX}
             anchorY="middle"

@@ -7,28 +7,7 @@ import Single2DCube from "./NewSingleFlow/Single2DCube";
 import SecondLayer from "./SecondLayer/SecondLayer";
 import ThirdLayer from "./ThirdLayer/ThirdLayer";
 import InititalLoadingCube from "./components/InitialLoadingCube";
-
-
-
-// const Cube = () => {
-
-//     const cubeRef = useRef();
-
-//     useFrame((state, delta) => {
-//         cubeRef.current.rotation.y += delta;
-//     })
-
-
-//     return (
-//         <mesh ref={cubeRef}>
-//             <OrbitControls />
-//             <ambientLight />
-//             <boxGeometry />
-//             <meshStandardMaterial color="green" />
-//         </mesh>
-//     )
-// }
-
+import { Box } from "@mui/material";
 
 
 const App = () => {
@@ -46,20 +25,115 @@ const App = () => {
         return () => clearTimeout(timeout);
     }, [])
 
-    // console.log(step)
+    // return (
+    //     <div style={{ height: "100%", width: '100%' }}>
+    //         {/* {isLoading ? <InititalLoadingCube /> : */}
+    //         <>
+    //             {step === 'firstLayer' && !isLoading ? <RubikCube setStep={setStep} /> : <InititalLoadingCube />}
+    //             {/* {step === 'firstLayer' && <RubikCube setStep={setStep} />} */}
+    //             {/* <Single2DCube /> */}
+    //             {step === 'secondtLayer' && <SecondLayer setStep={setStep} activeValues={activeValues} setActiveValues={setActiveValues} />}
+    //             {step === 'thirdLayer' && <ThirdLayer setStep={setStep} activeValues={activeValues} setActiveValues={setActiveValues} />}
+    //             {/* <ThirdLayer /> */}
+    //         </>
+    //         {/* } */}
+    //     </div>
+    // );
 
+    //? second update
+    // return (
+    //     <div style={{ height: "100%", width: '100%' }}>
+    //       {isLoading ? (
+    //         <InititalLoadingCube />
+    //       ) : (
+    //         <>
+    //           {step === 'firstLayer' && <RubikCube setStep={setStep} />}
+    //           {step === 'secondtLayer' && (
+    //             <SecondLayer
+    //               setStep={setStep}
+    //               activeValues={activeValues}
+    //               setActiveValues={setActiveValues}
+    //             />
+    //           )}
+    //           {step === 'thirdLayer' && (
+    //             <ThirdLayer
+    //               setStep={setStep}
+    //               activeValues={activeValues}
+    //               setActiveValues={setActiveValues}
+    //             />
+    //           )}
+    //           {/* Render a fallback component or message if step doesn't match any condition */}
+    //           {step !== 'firstLayer' &&
+    //             step !== 'secondtLayer' &&
+    //             step !== 'thirdLayer' && <div>Invalid step value</div>}
+    //         </>
+    //       )}
+    //     </div>
+    //   );
+
+    //? third update
+    // return (
+    //     <div style={{ height: "100%", width: '100%' }}>
+    //       {isLoading ? (
+    //         <Box sx={{visibility: !isLoading && 'hidden', transition:'all 0.5s ease-in-out'}}><InititalLoadingCube /></Box>
+    //       ) : (
+    //         <>
+    //           {step === 'firstLayer' && <RubikCube setStep={setStep} />}
+    //           {/* Render SecondLayer only when the step is explicitly set to 'secondtLayer' */}
+    //           {step === 'secondtLayer' && (
+    //             <SecondLayer
+    //               setStep={setStep}
+    //               activeValues={activeValues}
+    //               setActiveValues={setActiveValues}
+    //             />
+    //           )}
+    //           {step === 'thirdLayer' && (
+    //             <ThirdLayer
+    //               setStep={setStep}
+    //               activeValues={activeValues}
+    //               setActiveValues={setActiveValues}
+    //             />
+    //           )}
+    //           {/* Render a fallback component or message if step doesn't match any condition */}
+    //           {step !== 'firstLayer' &&
+    //             step !== 'secondtLayer' &&
+    //             step !== 'thirdLayer' && <div>Invalid step value</div>}
+    //         </>
+    //       )}
+    //     </div>
+    //   );
+
+    //? fourth 
     return (
         <div style={{ height: "100%", width: '100%' }}>
-            {isLoading ? <InititalLoadingCube /> :
+          {/* {isLoading ? ( */}
+            <Box sx={{position:'absolute', left: '0', top:'0', height:'100%', width:'100%', transition:'all 2s ease-in-out', visibility: isLoading ? 'visible' : 'hidden', zIndex: 1000}}><InititalLoadingCube /></Box>
+          {/* ) : ( */}
             <>
-                {step === 'firstLayer' && <RubikCube setStep={setStep} />}
-                {/* <Single2DCube /> */}
-                {step === 'secondtLayer' && <SecondLayer setStep={setStep} activeValues={activeValues} setActiveValues={setActiveValues} />}
-                {step === 'thirdLayer' && <ThirdLayer setStep={setStep} activeValues={activeValues} setActiveValues={setActiveValues} />}
-                {/* <ThirdLayer /> */}
-            </>}
+              {step === 'firstLayer' && <RubikCube setStep={setStep} />}
+              {/* Render SecondLayer only when the step is explicitly set to 'secondtLayer' */}
+              {step === 'secondtLayer' && (
+                <SecondLayer
+                  setStep={setStep}
+                  activeValues={activeValues}
+                  setActiveValues={setActiveValues}
+                />
+              )}
+              {step === 'thirdLayer' && (
+                <ThirdLayer
+                  setStep={setStep}
+                  activeValues={activeValues}
+                  setActiveValues={setActiveValues}
+                />
+              )}
+              {/* Render a fallback component or message if step doesn't match any condition */}
+              {step !== 'firstLayer' &&
+                step !== 'secondtLayer' &&
+                step !== 'thirdLayer' && <div>Invalid step value</div>}
+            </>
+          {/* )} */}
         </div>
-    );
+      );
 };
 
 export default App;

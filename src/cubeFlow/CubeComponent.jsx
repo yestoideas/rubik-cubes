@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useLoader } from '@react-three/fiber';
-import { TextureLoader } from 'three';
+import { BoxGeometry, TextureLoader } from 'three';
 
 const CubeComponent = () => {
   const [hoveredCube, setHoveredCube] = useState(null);
@@ -33,7 +33,8 @@ const CubeComponent = () => {
               onPointerOver={() => handleCubeHover(index)}
               onPointerOut={handleCubeUnhover}
             >
-              <boxGeometry />
+              {/* <boxGeometry /> */}
+              <BoxGeometry />
               <meshStandardMaterial color={color} map={texture} />
             </mesh>
           );

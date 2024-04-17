@@ -98,7 +98,10 @@ function Cubelet({ position, geometry }) {
     return (
         <mesh position={position} geometry={geometry}>
             {[...Array(6).keys()].map((i) => (
-                <meshStandardMaterial key={i} attach={`material-${i}`} color={getFaceColor(i)} />
+                <meshStandardMaterial key={i} attach={`material-${i}`} 
+                // color={getFaceColor(i)} 
+
+                />
             ))}
         </mesh>
     )
