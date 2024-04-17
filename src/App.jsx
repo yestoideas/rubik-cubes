@@ -6,6 +6,7 @@ import Scene from "./cubeFlow/Scene";
 import Single2DCube from "./NewSingleFlow/Single2DCube";
 import SecondLayer from "./SecondLayer/SecondLayer";
 import ThirdLayer from "./ThirdLayer/ThirdLayer";
+import InititalLoadingCube from "./components/InitialLoadingCube";
 
 
 
@@ -38,7 +39,8 @@ const App = () => {
 
     return (
         <div style={{height:"100%", width: '100%'}}>
-            {step === 'firstLayer' && <RubikCube setStep={setStep} />}
+            {/* {step === 'firstLayer' && <RubikCube setStep={setStep} />} */}
+            {step === 'firstLayer' && <InititalLoadingCube setStep={setStep} />}
             {/* <Single2DCube /> */}
             {step === 'secondtLayer' && <SecondLayer setStep={setStep} activeValues={activeValues} setActiveValues={setActiveValues} />}
             {step === 'thirdLayer' && <ThirdLayer setStep={setStep} activeValues={activeValues} setActiveValues={setActiveValues} />}
