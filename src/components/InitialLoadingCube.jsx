@@ -108,7 +108,7 @@ function Cubelet({ position, geometry }) {
 const getFaceColor = (index) => {
     switch (index) {
         case 0: // Front
-            return 'green';
+            return '#9fa2a6';
         case 1: // Back
             return 'white';
         case 2: // Top
@@ -116,9 +116,9 @@ const getFaceColor = (index) => {
         case 3: // Bottom
             return 'goldenrod';
         case 4: // Left
-            return 'white';
-        case 5: // Right
             return 'black';
+        case 5: // Right
+            return 'red';
         default:
             return 'white';
     }
@@ -138,9 +138,11 @@ const getFaceColor = (index) => {
 
 ///! rest data...... start
 function InititalLoadingCube({ setStep }) {
+    
     return (
-        <>
-            <Canvas style={{ width: '100vw', height: '100vh' }} orthographic camera={{ position: [2.5, 2, 5], left: -2, right: 2, top: 2, bottom: -2, zoom: 100 }}>
+        <Box>
+            {/* <Canvas style={{ width: '100vw', height: '100vh' }} orthographic camera={{ position: [2.5, 2, 5], left: -2, right: 2, top: 2, bottom: -2, zoom: 100 }}> */}
+            <Canvas style={{ width: '100vw', height: '100vh' }} orthographic camera={{ position: [2.5, 2.5, 2.5], left: -2, right: 2, top: 2, bottom: -2, zoom: 80 }}>
                 <ambientLight intensity={0.5} />
                 <color attach="background" args={['#818589']} />
                 {/* <color attach="background" args={['#ffffff']} /> */}
@@ -154,7 +156,7 @@ function InititalLoadingCube({ setStep }) {
                 <Box />
                 <meshStandardMaterial color="white" />
             </Canvas>
-        </>
+        </Box>
     )
 }
 
