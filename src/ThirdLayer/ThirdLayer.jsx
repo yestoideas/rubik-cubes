@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Box, Container, Grid, IconButton, Stack } from '@mui/material';
 import { makeStyles } from '@mui/styles';
@@ -60,9 +61,12 @@ const ThirdLayer = ({ setActiveValues, setStep, activeValues }) => {
     const [nextLayer, setNextLayer] = useState(true);
 
     const handleClick = (payload) => {
-        setActiveValues(payload)
-        setStep('thirdLayer')
+        console.log(payload)
+        // setActiveValues(payload)
+        // setStep('thirdLayer')
     };
+
+    console.log('active valued from third layers', activeValues)
 
     const getBackHandler = () =>{
         setStep('secondtLayer')
@@ -74,10 +78,10 @@ const ThirdLayer = ({ setActiveValues, setStep, activeValues }) => {
                 <IconButton onClick={getBackHandler}  sx={{ bgcolor: 'gray !important', color: '#ffffff' }}><ArrowBackIcon /> </IconButton>
                 <Box className={classes.board} mt={3}>
                     <Grid container spacing={0.5}>
-                        {secondArr.map((item, index) => (
+                        {activeValues?.overviews?.map((item, index) => (
                             <Grid key={index} item xs={3}>
                                 <Stack
-                                    // onClick={() => handleClick(item)}
+                                    onClick={() => handleClick(item)}
                                     className={classes.box}
                                     sx={{
                                         //   background: `radial-gradient(circle, hsla(313, 39%, 93%, 1) 0%, ${cubeBgColors[index]?.color} 0%, hsla(193, 81%, 84%, 1) 100%)`,
@@ -86,7 +90,8 @@ const ThirdLayer = ({ setActiveValues, setStep, activeValues }) => {
                                     alignItems="center"
                                     justifyContent={"center"}
                                 >
-                                    {item.value + '+' + activeValues.value}
+                                    {/* {item.value + '+' + activeValues.value} */}
+                                    {item.title}
                                 </Stack>
                             </Grid>
                         ))}
