@@ -8,6 +8,7 @@ import SecondLayer from "./SecondLayer/SecondLayer";
 import ThirdLayer from "./ThirdLayer/ThirdLayer";
 import InititalLoadingCube from "./components/InitialLoadingCube";
 import { Box } from "@mui/material";
+import SecondLayerLayout from "./SecondLayer";
 
 
 const App = () => {
@@ -106,12 +107,10 @@ const App = () => {
     //? fourth 
     return (
         <div style={{ height: "100%", width: '100%' }}>
-          {/* {isLoading ? ( */}
-            <Box sx={{position:'absolute', left: '0', top:'0', height:'100%', width:'100%', transition:'all 2s ease-in-out', visibility: isLoading ? 'visible' : 'hidden', zIndex: 1000}}><InititalLoadingCube /></Box>
-          {/* ) : ( */}
+            <SecondLayerLayout />
+            {/* <Box sx={{position:'absolute', left: '0', top:'0', height:'100%', width:'100%', transition:'all 2s ease-in-out', visibility: isLoading ? 'visible' : 'hidden', zIndex: 1000}}><InititalLoadingCube /></Box>
             <>
               {step === 'firstLayer' && <RubikCube setStep={setStep} />}
-              {/* Render SecondLayer only when the step is explicitly set to 'secondtLayer' */}
               {step === 'secondtLayer' && (
                 <SecondLayer
                   setStep={setStep}
@@ -126,12 +125,10 @@ const App = () => {
                   setActiveValues={setActiveValues}
                 />
               )}
-              {/* Render a fallback component or message if step doesn't match any condition */}
               {step !== 'firstLayer' &&
                 step !== 'secondtLayer' &&
                 step !== 'thirdLayer' && <div>Invalid step value</div>}
-            </>
-          {/* )} */}
+            </> */}
         </div>
       );
 };
