@@ -74,7 +74,7 @@ import { ColorConverter } from 'three/examples/jsm/math/ColorConverter'
 //     )
 // }
 
-function Cube({ setStep }) {
+function Cube({ setStep, setIsLoading }) {
     const ref = useRef();
     const roundedBoxGeometry = useMemo(() => {
         return new RoundedBoxGeometry(1, 1, 1, 1, 0.05)
@@ -87,6 +87,11 @@ function Cube({ setStep }) {
 
 
     const [dbClickTimer, setDbClickTimer] = useState(null);
+
+    const handlePointerEnter = () => {
+        setStep('secondtLayer');
+        setIsLoading(true);
+    }
 
     const handleCubeletClick = (position, exactPosition) => {
 
@@ -137,6 +142,7 @@ function Cube({ setStep }) {
                                 key={x + y * 3 + z * 9}
                                 position={[x - 1, y - 1, z - 1]}
                                 geometry={roundedBoxGeometry}
+                                onPointerEnter={handlePointerEnter}
                                 onClick={() => handleCubeletClick([x - 1, y - 1, z - 1], [x, y, z])}
                             />
                         ))
@@ -148,14 +154,14 @@ function Cube({ setStep }) {
     )
 }
 
-function Cubelet({ position, geometry, onClick, indexes, positionss }) {
+function Cubelet({ position, geometry, onPointerEnter, onClick, indexes, positionss }) {
     // console.log('position', positionss, "indexes", indexes);
     // console.log('position', position, "indexes", indexes);
 
 
     return (
 
-        <mesh position={position} geometry={geometry} onClick={onClick} scale={[1, 1, 1]}>
+        <mesh position={position} geometry={geometry} onPointerEnter={onPointerEnter}  onClick={onClick} scale={[1, 1, 1]}>
             {[...Array(6).keys()].map((i) => (
                 <meshStandardMaterial key={i} attach={`material-${i}`} />
             ))}
@@ -1401,7 +1407,7 @@ const cubeData = [
 ];
 
 
-function RubikCube({ setStep }) {
+function RubikCube({ setStep, setIsLoading }) {
     const texts = 'Risk\nreduction';
     return (
         <>
@@ -1417,7 +1423,7 @@ function RubikCube({ setStep }) {
                 <Suspense>
                     <Environment preset="sunset" />
                 </Suspense>
-                <Cube setStep={setStep} />
+                <Cube setStep={setStep} setIsLoading={setIsLoading} />
                 <OrbitControls target={[0, 0, 0]} />
                 {/* <ContactShadows frames={1} position={[0, -0.5, 0]}  color="orange" /> */}
                 <Stats />

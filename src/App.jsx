@@ -17,14 +17,14 @@ const App = () => {
     const [activeValues, setActiveValues] = useState({});
 
     useEffect(() => {
-        setIsLoading(true);
-
+        // setIsLoading(true);
+        if(!isLoading) return;
         const timeout = setTimeout(() => {
             setIsLoading(false);
         }, 5000);
 
         return () => clearTimeout(timeout);
-    }, [])
+    }, [isLoading])
 
     // return (
     //     <div style={{ height: "100%", width: '100%' }}>
@@ -107,17 +107,17 @@ const App = () => {
     //? fourth 
     return (
         <div style={{ height: "100%", width: '100%' }}>
-            <SecondLayerLayout />
-            {/* <Box sx={{position:'absolute', left: '0', top:'0', height:'100%', width:'100%', transition:'all 2s ease-in-out', visibility: isLoading ? 'visible' : 'hidden', zIndex: 1000}}><InititalLoadingCube /></Box>
+            <Box sx={{position:'absolute', left: '0', top:'0', height:'100%', width:'100%', transition:'all 2s ease-in-out', visibility: isLoading ? 'visible' : 'hidden', zIndex: 1000}}><InititalLoadingCube /></Box>
             <>
-              {step === 'firstLayer' && <RubikCube setStep={setStep} />}
+              {step === 'firstLayer' && <RubikCube setStep={setStep} setIsLoading={setIsLoading} />}
               {step === 'secondtLayer' && (
-                <SecondLayer
+                <SecondLayerLayout activeValues={activeValues} />
+              )}
+                {/* <SecondLayer
                   setStep={setStep}
                   activeValues={activeValues}
                   setActiveValues={setActiveValues}
-                />
-              )}
+                /> */}
               {step === 'thirdLayer' && (
                 <ThirdLayer
                   setStep={setStep}
@@ -128,7 +128,7 @@ const App = () => {
               {step !== 'firstLayer' &&
                 step !== 'secondtLayer' &&
                 step !== 'thirdLayer' && <div>Invalid step value</div>}
-            </> */}
+            </>
         </div>
       );
 };
