@@ -16,7 +16,8 @@ const useStyles = makeStyles({
 
     boxContainer: {
         display: 'grid',
-        gridTemplateColumns: 'auto auto auto',
+        // gridTemplateColumns: 'auto auto auto',
+        gridTemplateColumns: 'auto auto auto auto auto auto',
         gap: '2.5rem',
         justifyContent: 'center',
     },
@@ -35,63 +36,38 @@ const useStyles = makeStyles({
 
 
 const distributedCubeData = [
-    {
-        text: 'XC1',
-        anchorX: 'center',
-        position: [-1, 1, 1.53],
-        rotation: [0, 0, 0],
-    },
-    {
-        text: 'XB1',
-        anchorX: 'center',
-        position: [-1, 0, 1.53],
-        rotation: [0, 0, 0],
-    },
-    {
-        text: 'XA1',
-        anchorX: 'center',
-        position: [-1, -1, 1.53],
-        rotation: [0, 0, 0],
-    },
+    // 1
+    {text: 'XC1',},
+    {text: 'XB1',},
+    {text: 'XA1',},
+    {text: 'YC1',},
+    {text: 'YB1',},
+    {text: 'YA1',},
+    {text: 'ZC1',},
+    {text: 'ZB1',},
+    {text: 'ZA1',},
 
-    {
-        text: 'YC1',
-        anchorX: 'center',
-        position: [0, 1, 1.53],
-        rotation: [0, 0, 0],
-    },
-    {
-        text: 'YB1',
-        anchorX: 'center',
-        position: [0, 0, 1.53],
-        rotation: [0, 0, 0],
-    },
-    {
-        text: 'YA1',
-        anchorX: 'center',
-        position: [0, -1, 1.53],
-        rotation: [0, 0, 0],
-    },
+    // 2
+    {text: 'XC2',},
+    {text: 'XB2',},
+    {text: 'XA2',},
+    {text: 'YC2',},
+    {text: 'YB2',},
+    {text: 'YA2',},
+    {text: 'ZC2',},
+    {text: 'ZB2',},
+    {text: 'ZA2',},
 
-    {
-        text: 'ZC1',
-        anchorX: 'center',
-        position: [1, 1, 1.53],
-        rotation: [0, 0, 0],
-    },
-    {
-        text: 'ZB1',
-        anchorX: 'center',
-        position: [1, 0, 1.53],
-        rotation: [0, 0, 0],
-    },
-
-    {
-        text: 'ZA1',
-        anchorX: 'center',
-        position: [1, -1, 1.53],
-        rotation: [0, 0, 0],
-    },
+    // 2
+    {text: 'XC3',},
+    {text: 'XB3',},
+    {text: 'XA3',},
+    {text: 'YC3',},
+    {text: 'YB3',},
+    {text: 'YA3',},
+    {text: 'ZC3',},
+    {text: 'ZB3',},
+    {text: 'ZA3',},
 ]
 
 const SquareBoxes = ({ setActiveValues, onClickLabel, setStep, activeValues }) => {
