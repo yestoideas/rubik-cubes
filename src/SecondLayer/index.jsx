@@ -2,6 +2,7 @@ import { Button, IconButton, Stack, Typography } from "@mui/material";
 import { useState } from "react";
 import SquareBoxes from "../components/SquareBoxes";
 import { ArrowBack, Close } from "@mui/icons-material";
+import SecondLayer from "./SecondLayer";
 
 
 const secondLayerData = [
@@ -1647,6 +1648,7 @@ const SecondLayerLayout = () => {
     const [selectedShortText, setSelectedShortText] = useState('');
     const [cubeData, setCubeData] = useState([...secondLayerData]);
     // const [cubeData, setCubeData] = useState([]);
+    const [step, setStep] = useState(0);
     const [selectedCubeData, setSelectedCubeData] = useState([]);
 
 
@@ -1659,7 +1661,8 @@ const SecondLayerLayout = () => {
     }
 
     const handleBackSidebar = () => {
-        setAnalysisData([]);
+        // setAnalysisData([]);
+        setStep((prev) => prev - 1);
     }
 
     const handleCloseSidebar = () => {
@@ -1668,17 +1671,29 @@ const SecondLayerLayout = () => {
     }
 
     const handleAnalysisData = () => {
-        const newData = [...sectors].map((sector) => {
-            const sectorData = sector.overviews.filter(item => item.title === selectedShortText);
-            return {
-                ...sector,
-                overviews: sectorData[0],
-            }
-        });
+        // const newData = [...sectors].map((sector) => {
+        //     const sectorData = sector.overviews.filter(item => item.title === selectedShortText);
+        //     return {
+        //         ...sector,
+        //         overviews: sectorData[0],
+        //     }
+        // });
 
-        setAnalysisData(newData);
+        // setAnalysisData(newData);
+        setStep((prev) => prev + 1);
     }
 
+    const handleSelectAnalysis = (payload) => {
+        const sectorData = payload.overviews.filter(item => item.title === selectedShortText);
+        setAnalysisData({
+            title: payload.title,
+            overviews: sectorData[0],
+        });
+
+        setStep((prev) => prev + 1);
+    }
+
+    console.log("step", step)
     // console.log(selectedCubeData)
     console.log("selectedCubeData", Object.keys(analysisData).length > 0)
 
@@ -1719,14 +1734,17 @@ const SecondLayerLayout = () => {
                     }}
                 >
                     <Stack direction={'row'} justifyContent={'flex-end'} sx={{ marginBottom: '-2.5rem !important' }}>
+                        {/* Object.keys(analysisData).length > 0 ? */}
                         {
-                            Object.keys(analysisData).length > 0 ?
+                            step !== 0 ?
                                 <IconButton onClick={handleBackSidebar} sx={{ bgcolor: 'gray !important', color: '#ffffff' }}><ArrowBack /> </IconButton>
                                 :
                                 <IconButton onClick={handleCloseSidebar} sx={{ bgcolor: 'gray !important', color: '#ffffff' }}><Close /> </IconButton>
                         }
                     </Stack>
-                    {!Object.keys(analysisData).length > 0 ?
+
+                    {/* !Object.keys(analysisData).length > 0 ? */}
+                    {step === 0 ?
                         <>
                             {selectedCubeData.length > 0 ? selectedCubeData.map((item, i) => (
                                 <Stack key={`${item.shortText + i}`}>
@@ -1756,24 +1774,29 @@ const SecondLayerLayout = () => {
                                     </Typography>
                                 </Stack>
                             )) : null}
-                        </>
-                        :
-                        <>
-                            {analysisData.length > 0 ? analysisData.map((item, i) => (
-                                <Stack key={`${item.title + i}`}>
-                                    <Typography variant='h5' fontWeight={600} >
-                                        {item.title}
-                                    </Typography>
-                                    <Typography variant='' fontWeight={500} >
-                                        {item.overviews.details}
-                                    </Typography>
-                                </Stack>
-                            )) : null}
-                        </>
+                        </> : null
                     }
 
+                     {/* ? analysisData.map((item, i) => ( */}
+                    {step === 2 ?
+                        (<Stack>
+                            <Typography variant='h5' fontWeight={600} >
+                                {analysisData.title}
+                            </Typography>
+                            <Typography variant='' fontWeight={500} >
+                                {analysisData.overviews.details}
+                            </Typography>
+                        </Stack>) : null}
+
+                    {step === 1 ? <SecondLayer
+                        // setAnalysisData={setAnalysisData}
+                        // selectedShortText={selectedShortText}
+                        onClickNext={handleSelectAnalysis}
+                    /> : null}
+
                     <Stack direction={'row'} justifyContent={'flex-start'} sx={{ marginBottom: '' }}>
-                        {!Object.keys(analysisData).length > 0 ?
+                        {/* {!Object.keys(analysisData).length > 0 ? */}
+                        {step < 1 ?
                             <Button onClick={handleAnalysisData} variant="contained" color="success" sx={{ textTransform: 'none', fontWeight: 'bold' }} >Run Analysis</Button> : null
                         }
                     </Stack>
