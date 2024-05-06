@@ -14,17 +14,24 @@ import SecondLayerLayout from "./SecondLayer";
 const App = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [step, setStep] = useState('firstLayer');
+    // const [step, setStep] = useState('thirdLayer');
     const [activeValues, setActiveValues] = useState({});
 
     useEffect(() => {
-        // setIsLoading(true);
-        if(!isLoading) return;
+        setIsLoading(true);
+        // if(!isLoading) return;
+        console.log('first')
         const timeout = setTimeout(() => {
             setIsLoading(false);
+            console.log('second');
+            setStep('thirdLayer');
         }, 5000);
 
+        console.log('third')
         return () => clearTimeout(timeout);
-    }, [isLoading])
+    }, []);
+
+    console.log("setup stepppp...", step)
 
     // return (
     //     <div style={{ height: "100%", width: '100%' }}>
@@ -105,32 +112,34 @@ const App = () => {
     //   );
 
     //? fourth 
+
+
     return (
         <div style={{ height: "100%", width: '100%' }}>
-            <Box sx={{position:'absolute', left: '0', top:'0', height:'100%', width:'100%', transition:'all 2s ease-in-out', visibility: isLoading ? 'visible' : 'hidden', zIndex: 1000}}><InititalLoadingCube /></Box>
+            <Box sx={{ position: 'absolute', left: '0', top: '0', height: '100%', width: '100%', transition: 'all 2s ease-in-out', visibility: isLoading ? 'visible' : 'hidden', zIndex: 1000 }}><InititalLoadingCube /></Box>
             <>
-              {step === 'firstLayer' && <RubikCube setStep={setStep} setIsLoading={setIsLoading} />}
-              {step === 'secondtLayer' && (
-                <SecondLayerLayout activeValues={activeValues} />
-              )}
+                {step === 'firstLayer' && <RubikCube setStep={setStep} setIsLoading={setIsLoading}  />}
+                {step === 'secondtLayer' && (
+                    <SecondLayerLayout activeValues={activeValues}  />
+                )}
                 {/* <SecondLayer
                   setStep={setStep}
                   activeValues={activeValues}
                   setActiveValues={setActiveValues}
                 /> */}
-              {step === 'thirdLayer' && (
-                <ThirdLayer
-                  setStep={setStep}
-                  activeValues={activeValues}
-                  setActiveValues={setActiveValues}
-                />
-              )}
-              {step !== 'firstLayer' &&
-                step !== 'secondtLayer' &&
-                step !== 'thirdLayer' && <div>Invalid step value</div>}
+                {step === 'thirdLayer' && (
+                    <ThirdLayer
+                        setStep={setStep}
+                        activeValues={activeValues}
+                        setActiveValues={setActiveValues}
+                    />
+                )}
+                {step !== 'firstLayer' &&
+                    step !== 'secondtLayer' &&
+                    step !== 'thirdLayer' && <div>Invalid step value</div>}
             </>
         </div>
-      );
+    );
 };
 
 export default App;

@@ -3,6 +3,7 @@ import { useState } from "react";
 import SquareBoxes from "../components/SquareBoxes";
 import { ArrowBack, Close } from "@mui/icons-material";
 import SecondLayer from "./SecondLayer";
+import RubikCube from "../Cube";
 
 
 const secondLayerData = [
@@ -1712,7 +1713,8 @@ const SecondLayerLayout = () => {
                     }}
                 >
                     {/* <Button onClick={() => setOpen((prev) => !prev)}> click </Button> */}
-                    <SquareBoxes onClickLabel={handleSelectedCube} />
+                    {/* <SquareBoxes onClickLabel={handleSelectedCube} /> */}
+                    <RubikCube setStep={setStep} />
                 </Stack>
 
 
@@ -1797,7 +1799,12 @@ const SecondLayerLayout = () => {
                     <Stack direction={'row'} justifyContent={'flex-start'} sx={{ marginBottom: '' }}>
                         {/* {!Object.keys(analysisData).length > 0 ? */}
                         {step < 1 ?
-                            <Button onClick={handleAnalysisData} variant="contained" color="success" sx={{ textTransform: 'none', fontWeight: 'bold' }} >Run Analysis</Button> : null
+                            <>
+                                <Button onClick={handleAnalysisData} variant="contained" color="success" sx={{ textTransform: 'none', fontWeight: 'bold' }} >Run sector analysis</Button> 
+                                
+                                <Button onClick={handleAnalysisData} variant="contained" color="success" sx={{ textTransform: 'none', fontWeight: 'bold' }} >Run country analysis</Button> 
+                            </>
+                                : null
                         }
                     </Stack>
                 </Stack>
