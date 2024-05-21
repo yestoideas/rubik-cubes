@@ -3,7 +3,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Box, Container, Grid, IconButton, Stack } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useState } from 'react';
-import { cubeBgColors } from '../utils/cubeColors';
+// import { cubeBgColors } from '../utils/cubeColors';
 
 const useStyles = makeStyles({
     container: {
@@ -85,7 +85,7 @@ const ThirdLayer = ({ setActiveValues, setStep, activeValues }) => {
                                     className={classes.box}
                                     sx={{
                                         //   background: `radial-gradient(circle, hsla(313, 39%, 93%, 1) 0%, ${cubeBgColors[index]?.color} 0%, hsla(193, 81%, 84%, 1) 100%)`,
-                                        background: `${cubeBgColors[index]?.color}`,
+                                        // background: `${cubeBgColors[index]?.color}`,
                                     }}
                                     alignItems="center"
                                     justifyContent={"center"}

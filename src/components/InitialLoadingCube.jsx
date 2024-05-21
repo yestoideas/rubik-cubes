@@ -127,17 +127,6 @@ const getFaceColor = (index) => {
     }
 };
 
-// ... (rest of the code remains the same)
-
-
-
-
-
-
-
-
-
-
 
 ///! rest data...... start
 function InititalLoadingCube({ setStep }) {
