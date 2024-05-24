@@ -1,6 +1,18 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
+// import cubeBgImg from '../assets/bgImages/alpine tundra.jpg'
+// import cubeBgImg from '../assets/bgImages/arctic tundra.jpg'
+// import cubeBgImg from '../assets/bgImages/boreal forest.jpg'
+// import cubeBgImg from '../assets/bgImages/coral reef.jpg'
+// import cubeBgImg from '../assets/bgImages/desert oasis.jpg'
+// import cubeBgImg from '../assets/bgImages/fenlands.jpg'
+// import cubeBgImg from '../assets/bgImages/glacial valley.jpg'
+// import cubeBgImg from '../assets/bgImages/grassy top of cliff.jpg'
+// import cubeBgImg from '../assets/bgImages/mangrove.jpg'
+// import cubeBgImg from '../assets/bgImages/mountain valley.jpg'
+// import cubeBgImg from '../assets/bgImages/sand dunes.jpg'
+import cubeBgImg from '../assets/bgImages/tropical rainforest.jpg'
 
 const CubeContainer = styled('div')(({ theme }) => ({
   color: '#eee',
@@ -9,7 +21,8 @@ const CubeContainer = styled('div')(({ theme }) => ({
   height: '100vh',
   justifyContent: 'center',
   perspective: '10000px',
-  width:"100%"
+  width:"100%",
+  
 }));
 
 const Cube = styled('div')(({ theme }) => ({
@@ -20,17 +33,111 @@ const Cube = styled('div')(({ theme }) => ({
   transition: 'transform 0.6s ease-out',
 }));
 
+// const CubeFace = styled('div')(({ theme }) => ({
+//     width: '300px',
+//     height: '300px',
+//     position: 'absolute',
+//     fontSize: '22px',
+//     backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent white background
+//     color: '#2c3e50', // Dark blue text color
+//     fontWeight: 'bold',
+//     display: 'grid',
+//     gridTemplateColumns: 'repeat(3, 1fr)',
+//     padding: '20px', // Add some padding for better readability
+//     borderRadius: '10px', // Add rounded corners for a modern look
+//   }));
+// const CubeFace = styled('div')(({ theme }) => ({
+//     width: '300px',
+//     height: '300px',
+//     position: 'absolute',
+//     fontSize: '22px',
+//     //   background: 'white',
+//     // background: '',
+//     color: '#000',
+//     fontWeight: 'bold',
+//     display: 'grid',
+//     gridTemplateColumns: 'repeat(3, 1fr)',
+//     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)', // Add a subtle box shadow
+//     backgroundColor: 'rgba(255, 255, 255, 0.8)', // Semi-transparent white background
+  
+// }));
+
+// const CubeFace = styled('div')(({ theme }) => ({
+//     width: '300px',
+//     height: '300px',
+//     position: 'absolute',
+//     fontSize: '22px',
+//     backgroundColor: 'rgba(192, 192, 192, 0.7)', // Semi-transparent silver color
+//     color: '#ffffff', // White text color for better contrast
+//     fontWeight: 'bold',
+//     display: 'grid',
+//     gridTemplateColumns: 'repeat(3, 1fr)',
+//     padding: '5px',
+//     borderRadius: '10px',
+//     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+//     backdropFilter: 'blur(5px)', // Add a blur effect for glass-like appearance
+//     backgroundBlendMode: 'overlay', // Blend mode for a metallic look
+//   }));
+
+
+// const CubeFace = styled('div')(({ theme }) => ({
+//     width: '300px',
+//     height: '300px',
+//     position: 'absolute',
+//     fontSize: '22px',
+//     backgroundColor: '#c0c0c0', // Solid silver color
+//     color: '#ffffff', // White text color for better contrast
+//     fontWeight: 'bold',
+//     display: 'grid',
+//     gridTemplateColumns: 'repeat(3, 1fr)',
+//     padding: '20px',
+//     borderRadius: '10px',
+//     boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+//     backdropFilter: 'blur(5px)', // Add a blur effect for glass-like appearance
+//     backgroundBlendMode: 'overlay', // Blend mode for a metallic look
+//   }));
+
 const CubeFace = styled('div')(({ theme }) => ({
-  width: '300px',
-  height: '300px',
-  position: 'absolute',
-  fontSize: '22px',
-  background: 'white',
-  color: '#000',
-  fontWeight: 'bold',
-  display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
-}));
+    width: '300px',
+    height: '300px',
+    position: 'absolute',
+    fontSize: '22px',
+    backgroundColor: 'linear-gradient(to bottom, #add8e6, #cd853f)', // Light blue to golden-bronze gradient
+    color: '#ffffff', // White text color for better contrast
+    fontWeight: 'bold',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    padding: '5px',
+    borderRadius: '10px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+    backdropFilter: 'blur(15px)', // Add a blur effect for glass-like appearance
+    backgroundBlendMode: 'overlay', // Blend mode for a metallic look
+    // position: 'relative',
+    overflow: 'hidden',
+  
+    '&::before': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: 'linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1))',
+      mixBlendMode: 'overlay',
+    },
+  
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      background: 'radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 70%)',
+      mixBlendMode: 'overlay',
+    },
+  }));
+
 
 const CubeFaceContent = styled('div')(({ theme }) => ({
   aspectRatio: '1 / 1',
@@ -90,7 +197,6 @@ const CustomCube2 = ({onClickLabel}) => {
         onClickLabel({text: payload})
     }
 
-    // console.log('first', `rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg)`)
     return (
         <>
  <CubeContainer
@@ -99,6 +205,7 @@ const CustomCube2 = ({onClickLabel}) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className='cube-containers'
+      style={{background: `url(${cubeBgImg})`, backgroundPosition: 'center', backgroundSize:'cover', backgroundRepeat: 'no-repeat'}}
     >
       <Cube className='cube-main' style={{ transform: `rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg)` }}>
         {/* Front face */}
