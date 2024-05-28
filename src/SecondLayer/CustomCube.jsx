@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 // import cubeBgImg from '../assets/bgImages/alpine tundra.jpg'
 // import cubeBgImg from '../assets/bgImages/arctic tundra.jpg'
-// import cubeBgImg from '../assets/bgImages/boreal forest.jpg'
+import cubeBgImg from '../assets/bgImages/boreal forest.jpg'
+import { Box } from '@mui/material';
 // import cubeBgImg from '../assets/bgImages/coral reef.jpg'
 // import cubeBgImg from '../assets/bgImages/desert oasis.jpg'
 // import cubeBgImg from '../assets/bgImages/fenlands.jpg'
@@ -12,7 +13,7 @@ import { styled } from '@mui/material/styles';
 // import cubeBgImg from '../assets/bgImages/mangrove.jpg'
 // import cubeBgImg from '../assets/bgImages/mountain valley.jpg'
 // import cubeBgImg from '../assets/bgImages/sand dunes.jpg'
-import cubeBgImg from '../assets/bgImages/tropical rainforest.jpg'
+// import cubeBgImg from '../assets/bgImages/tropical rainforest.jpg'
 
 const CubeContainer = styled('div')(({ theme }) => ({
   color: '#eee',
@@ -113,7 +114,6 @@ const CubeFace = styled('div')(({ theme }) => ({
     backdropFilter: 'blur(15px)', // Add a blur effect for glass-like appearance
     backgroundBlendMode: 'overlay', // Blend mode for a metallic look
     // position: 'relative',
-    overflow: 'hidden',
   
     '&::before': {
       content: '""',
@@ -213,6 +213,8 @@ const CustomCube2 = ({onClickLabel}) => {
           <CubeFaceContent onClick={() => handleSelectBox('XC1')}>
             <CubeFaceText>XC1</CubeFaceText>
             <CubeFaceText onClick={(e) => e.stopPropagation()} style={{ left: '-50%', fontSize:'16px', textAlign:'left' }}>C: <br /> Solutions</CubeFaceText>
+            {/* <Box sx={{outline: '1px solid red', height:'100%', position:'relative', zInde: 1000}}>
+            </Box> */}
           </CubeFaceContent>
           <CubeFaceContent onClick={() => handleSelectBox('YC1')}>
             <CubeFaceText >YC1</CubeFaceText>
