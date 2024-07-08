@@ -213,6 +213,7 @@ const CustomCube2 = ({ onClickLabel }) => {
                 className='cube-containers'
                 style={{ background: `url(${cubeBgImg})`, backgroundPosition: 'center', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }}
             >
+            
                 <Cube className='cube-main' style={{ transform: `rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg)` }}>
                     {/* Front face */}
                     <CubeFace className="front common-face" style={{ transform: 'translateZ(150px)' }}>
